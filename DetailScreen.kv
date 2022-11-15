@@ -1,22 +1,55 @@
 #:import * mandel_layouts
 <DetailScreen>:
+    description: ''
+    name: ''
+    pictureURL: ''
+    price: ''
+    post_date: ''
+    post_time: ''
     Column:
         MDTopAppBar:
             id: toolbar
             left_action_items: [['chevron-left', lambda x: app.go_back()]]
 
-        Column:
-            halign: 'center'
-            spacing: dp(30)
-            padding: dp(30)        
-            background_color: .5,.2,.2,1
+        ScrollView:
+            Column:
+                id: container
+                padding: dp(20)
+                spacing: dp(10)
+                adaptive_height: True
+                AsyncImage:
+                    source: root.pictureURL
+                    size: dp(150), dp(200)
+                    size_hint_y : None
+                MDLabel:
+                    size_hint_y: None
+                    height: dp(25)                
+                    text: "Product Name : " + root.name
+                MDLabel:
+                    size_hint_y: None
+                    height: dp(25)                
+                    text: "Price : $" + root.price
+                MDLabel:
+                    size_hint_y: None
+                    height: dp(25)                
+                    text: "Post time : " + root.post_date
+                MDLabel:
+                    size_hint_y: None
+                    height: dp(25)                
+                    text: "Post time : " + root.post_time
+                MDTextField:
+                    id: number
+                    hint_text: 'Number'
 
-            MDLabel:
-                text: 'DetailScreen'
-                font_size: dp(20)
-                bold: True
-                halign: 'center'
-
-            MDRaisedButton:
-                text: 'Show ShoppingScreen'
-                on_press: app.show_screen('ShoppingScreen')
+                Column:
+                    background_color: 0,190,190,190
+                    radius: dp(10)
+                    padding: dp(5)
+                    adaptive_height: True
+                    MDLabel:
+                        text: "Description : " + root.description
+                        size_hint_y: None
+                        size: self.texture_size
+                MDRaisedButton:
+                    text: 'Buy'
+                    on_press: root.buy()

@@ -5,18 +5,32 @@
             id: toolbar
             left_action_items: [['chevron-left', lambda x: app.go_back()]]
 
-        Column:
-            halign: 'center'
-            spacing: dp(30)
-            padding: dp(30)
-            background_color: .2,.2,.5,1
+        ScrollView:
+            Column:
+                id: container
+                spacing: dp(10)
+                adaptive_height: True
 
-            MDLabel:
-                text: 'ShoppingScreen'
-                font_size: dp(20)
-                bold: True
-                halign: 'center'
 
-            MDRaisedButton:
-                text: 'Show DetailScreen'
-                on_press: app.show_screen('DetailScreen')
+<ShoppingItem>:
+    ### Do not need to add attributes for the title and the content
+    ###     because a SwipeItem has both of them already.
+    post_date: ''
+    post_time: ''
+    pictureURL: ''
+
+    on_press: self.show_details()
+
+    Lead:
+        AsyncImage:
+            source: root.pictureURL
+    Tail:
+        padding: dp(10)
+        MDLabel:
+            text: root.post_date
+            shorten: True
+            shorten_from: 'right'
+        MDLabel:
+            text: root.post_time
+            shorten: True
+            shorten_from: 'right'

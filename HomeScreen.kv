@@ -1,0 +1,26 @@
+#:import * mandel_layouts
+<HomeScreen>:
+    Column:
+        MDTopAppBar:
+            id: toolbar
+            left_action_items: [['chevron-left', lambda x: app.go_back()]]
+
+        Column:
+            halign: 'center'
+            spacing: dp(30)
+            padding: dp(30)        
+            background_color: .5,.2,.2,1
+
+            MDLabel:
+                text: 'HomeScreen'
+                font_size: dp(20)
+                bold: True
+                halign: 'center'
+
+            MDRaisedButton:
+                text: 'Show ShoppingScreen'
+                on_press: app.show_screen('ShoppingScreen')
+            
+            MDRaisedButton:
+                text: 'Show CartScreen'
+                on_press: app.show_screen('CartScreen')

@@ -1,0 +1,61 @@
+#:import * mandel_layouts
+
+<CartScreen>:
+    Column:
+        MDTopAppBar:
+            id: toolbar
+            left_action_items: [['chevron-left', lambda x: app.go_back()]]
+
+        ScrollView:
+            Column:
+                id: container
+                adaptive_height: True
+                spacing: dp(1)
+                background_color: 0,0,0,1
+
+
+<MyCartItem>:
+
+    ### two additional text attributes will be used to update two labels in the tail area
+    price: ''
+    count: ''
+    pictureURL: ''
+
+    ### set the swipping stops (positions)
+    left_swipe_stops: self.width
+
+    ### the callback functions that will be invoked when the swipping reaches the last stop.
+    on_left_swipped: self.delete()
+
+    ### the callback function that will be invoked when the user clicks the item
+    on_press: self.dosomething()
+
+    ### put an icon to the lead area
+    Lead:
+        AsyncImage:
+            source: root.pictureURL
+
+    ### put labels to the tail area
+    Tail:
+        padding: dp(10)
+        MDLabel:
+            text: root.count
+            shorten: True
+            shorten_from: 'right'
+        MDLabel:
+            text: root.price
+            shorten: True
+            shorten_from: 'right'
+    
+    ### put a label to the left menu
+    LeftMenu:
+        padding: dp(20)
+        MDLabel:
+            text: 'Right Swipe'
+
+    ### put an icon to the right menu
+    RightMenu:
+        MDIcon:
+            icon: 'trash-can'
+            size_hint: None, None
+            width: dp(36)
